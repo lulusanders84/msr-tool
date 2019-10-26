@@ -1,0 +1,41 @@
+html {
+  background-color: #f9f9f9;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+button {
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+h1 { 
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+/* input {
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  border-style: inset;
+  margin-right: 15px;
+  
+} */
+main {
+  display: flex;
+  justify-content: center
+}
+
+
+
+
