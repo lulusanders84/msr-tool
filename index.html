@@ -55,7 +55,7 @@
       </form>
     </main>
     <script type="text/javascript">
-      const handleSubmitAmounts=t=>{t.preventDefault();
+      function handleSubmitAmounts(t){t.preventDefault();
         const l=new Amount(["allowed","billed","listed"]);
         displayHtml("allow",`$${l.allow}`),
         displayHtml("name",l.name)};
@@ -64,7 +64,7 @@
         setData(t){const l=t.map(t=>parseInt($(`#${t}`).val())),a={};return l.forEach((l,s)=>{a[t[s]]=l}),a}
         setAllowAmount(t,l,a){return t>a&&l>a?t>l?l:t:t>l?t:l}
         setName(t,l){return Object.keys(t).reduce((a,s)=>(t[s]===l&&(a=s),a),0)}}
-      const displayHtml=(t,l)=>{$(`#${t}`).html(l)};</script>
+      function displayHtml(t,l){$(`#${t}`).html(l)};</script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

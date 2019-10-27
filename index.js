@@ -1,4 +1,4 @@
-const handleSubmitAmounts = (event) => {
+function handleSubmitAmounts(event) {
   event.preventDefault();
   const allowAmount = new Amount(["allowed", "billed", "listed"]);
     displayHtml("allow", `$${allowAmount.allow}`);
@@ -40,6 +40,6 @@ class Amount {
    }
 }
 
-const displayHtml = (name, value) => {
+function displayHtml(name, value) {
   $(`#${name}`).html(value)
 }
