@@ -1,10 +1,9 @@
 const handleSubmitAmounts = (event) => {
   event.preventDefault();
   const allowAmount = new Amount(["allowed", "billed", "listed"]);
-    displayHtml("allow", allowAmount.allow);
+    displayHtml("allow", `$${allowAmount.allow}`);
     displayHtml("name", allowAmount.name)
 }
-
 class Amount {
   constructor(namesArr) {
     this.data = this.setData(namesArr)
@@ -12,7 +11,7 @@ class Amount {
     this.allow = this.setAllowAmount(allowed, billed, listed);
     this.name = this.setName(this.data, this.allow);
   }
-  setData = (namesArr) => {
+  setData(namesArr) {
     const values = namesArr.map(name => {
       return parseInt($(`#${name}`).val())
     })
@@ -22,7 +21,7 @@ class Amount {
     })
     return data;
   }
-  setAllowAmount = (allowed, billed, listed) => {
+  setAllowAmount(allowed, billed, listed) {
     return allowed > listed && billed > listed 
     ? allowed > billed
     ? billed
@@ -31,7 +30,7 @@ class Amount {
       ? allowed
       : billed;
   }
-  setName = (data, allow) => {
+  setName(data, allow) {
     return Object.keys(data).reduce((acc, key) => {
      if(data[key] === allow) {
        acc = key;
