@@ -1,37 +1,38 @@
 function handleSubmitAmounts(event) {
   event.preventDefault();
-  const allowAmount = Amount(["allowed", "billed", "listed"]);
+  var allowAmount = Amount(["allowed", "billed", "listed"]);
     displayHtml("allow", "$" + allowAmount.allow);
     displayHtml("name", allowAmount.name)
 }
 function Amount(namesArr) {
-  this.data = this.setData(namesArr)
-  const allowed = this.data.allowed;
-  const billed = this.data.billed;
-  const listed = this.data.listed;
-  this.allow = this.setAllowAmount(allowed, billed, listed);
-  this.name = this.setName(this.data, this.allow);
+  var data = setData(namesArr)
+  var allowed = data.allowed;
+  var billed = data.billed;
+  var listed = data.listed;
+  var allow = setAllowAmount(allowed, billed, listed);
+  var name = setName(data, allow);
+  return {name, allow,};
 }
-Amount.prototype.setData = function(namesArr) {
-  const values = namesArr.map(function(name) {
+function setData(namesArr) {
+  var values = namesArr.map(function(name) {
     return parseInt($("#" + name).val())
   })
-  const data = {};
+  var data = {};
   values.forEach(function(value, index) {
     data[namesArr[index]] = value;
   })
   return data;
 }
-Amount.prototype.setAllowAmount = function(allowed, billed, listed) {
-  return allowed > listed && billed > listed 
-  ? allowed > billed
+function setAllowAmount(allowed, billed, listed) {
+  return billed < listed 
+  ? allowed / 2 > billed
   ? billed
   : allowed
   : allowed > billed
-    ? allowed
-    : billed;
+    ? billed
+    : allowed;
 }
-Amount.prototype.setName = function(data, allow) {
+function setName(data, allow) {
   return Object.keys(data).reduce(function(acc, key) {
     if(data[key] === allow) {
       acc = key;
